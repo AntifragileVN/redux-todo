@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getStatusFilter } from 'redux/selectors';
-import { setStatusFilter } from 'redux/filtersSlice';
+import { setStatusFilter, clearFilters } from 'redux/filtersSlice';
 import { statusFilters } from 'redux/constants';
+import { clearTask } from 'redux/taskSlice';
 
 import css from './StatusFilter.module.css';
 import { Button } from '../Button/Button';
@@ -32,6 +33,8 @@ export const StatusFilter = () => {
 			>
 				Completed
 			</Button>
+			{/* <Button onClick={() => dispatch(clearTask())}>Reset</Button>
+			<Button onClick={() => dispatch(clearFilters())}>ResetFilters</Button> */}
 		</div>
 	);
 };
