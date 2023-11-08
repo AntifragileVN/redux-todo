@@ -12,21 +12,18 @@ const tasksInitialState = [
 
 export const tasksReducer = createReducer(tasksInitialState, {
 	[addTask]: (state, action) => {
-		return [...state, action.payload];
+		state.push(action.payload);
 	},
 	[deleteTask]: (state, action) => {
 		return state.filter((task) => task.id !== action.payload);
 	},
 	[toggleCompleted]: (state, action) => {
-		return state.map((task) => {
-			if (task.id !== action.payload) {
-				return task;
+		for (const task of state) {
+			if (task.id === action.payload) {
+				task.completed = !task.completed;
+				break;
 			}
-			return {
-				...task,
-				completed: !task.completed,
-			};
-		});
+		}
 	},
 });
 
@@ -36,9 +33,6 @@ const filterInitialState = {
 
 export const filtersReducer = createReducer(filterInitialState, {
 	[setStatusFilter]: (state, action) => {
-		return {
-			...state,
-			status: action.payload,
-		};
+		return (state.status = action.payload);
 	},
 });
